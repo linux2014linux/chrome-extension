@@ -18,7 +18,13 @@
         "default_icon": "favicon.png",
         "default_popup": "popup.html"
     },
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["selectionhandler.js"]
+        }
+    ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "menuhandler.js"
     }
 }
