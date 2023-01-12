@@ -1,6 +1,11 @@
 let entranceElementId = "hanDianEntrance";
 let detailElementId = "hanDianDetail";
 
+function whetherChinese(text) {
+	let pattern = /^[\u4E00-\u9FA5\uF900-\uFA2D]{1,}$/;
+    return pattern.test(text);
+}
+
 function wordDetail(selectedText, xOffset, yOffset) {
     let detailElement = document.createElement("iframe");
     detailElement.id = detailElementId;
@@ -18,7 +23,7 @@ function wordDetail(selectedText, xOffset, yOffset) {
 function wordEntrance() {
     let selection = document.getSelection();
     let selectedText = selection.toString();
-    if (selectedText != "") {
+    if (selectedText != "" && whetherChinese(selectedText)) {
         let oRect = selection.getRangeAt(0).getBoundingClientRect();
         let xOffset = oRect.x + oRect.width + 7 + "px";
         let yOffset = window.scrollY + oRect.y + 7 + "px";
